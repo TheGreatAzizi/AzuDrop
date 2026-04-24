@@ -86,20 +86,6 @@ It is designed for quick everyday transfers between laptops, desktops, phones, t
 
 ---
 
-## Screenshots
-
-Screenshots are not included yet. Recommended images for a public repository:
-
-- Home screen with QR code
-- Text transfer section
-- File upload and file list section
-- Device Trust section
-- Mobile view with bottom navigation
-
-You can place screenshots in a `docs/screenshots/` folder and reference them here later.
-
----
-
 ## Requirements
 
 - **Node.js 18 or newer**
@@ -270,15 +256,6 @@ Important notes:
 - Files are not encrypted by default.
 - Use AzuDrop only on networks you trust.
 
-Recommended future security improvements:
-
-- PIN or room code before joining
-- Optional password protection
-- HTTPS support for local networks
-- Auto-expire uploaded files
-- Maximum upload size configuration
-- End-to-end encryption for text and files
-
 ---
 
 ## Troubleshooting
@@ -387,11 +364,3 @@ Made by **Mohammad Mehdi Azizi**.
 - Telegram: <https://t.me/luluch_code>
 - Website: <https://theazizi.ir/>
 - Financial support: <https://theazizi.ir/#support>
-
----
-
-## License
-
-No license has been added yet.
-
-Before publishing the repository publicly, consider adding a license file such as MIT, Apache-2.0, or GPL-3.0 depending on how you want others to use the project.
