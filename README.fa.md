@@ -30,6 +30,12 @@
 
 AzuDrop برای انتقال‌های سریع روزمره بین لپ‌تاپ، دسکتاپ، موبایل، تبلت و سایر دستگاه‌ها روی یک شبکه محلی قابل‌اعتماد طراحی شده است.
 
+<p align="center">
+  <img src="img/001.png" width="32%" alt="AzuDrop home">
+  <img src="img/002.png" width="32%" alt="AzuDrop texts">
+  <img src="img/003.png" width="32%" alt="AzuDrop files">
+</p>
+
 ---
 
 ## ویژگی‌ها
