@@ -30,6 +30,12 @@ Run it on one device, open the generated local network link or scan the QR code 
 
 It is designed for quick everyday transfers between laptops, desktops, phones, tablets, and other devices on a trusted local network.
 
+<p align="center">
+  <img src="img/001" width="32%" alt="AzuDrop home">
+  <img src="img/002" width="32%" alt="AzuDrop texts">
+  <img src="img/003.png" width="32%" alt="AzuDrop files">
+</p>
+
 ---
 
 ## Features
