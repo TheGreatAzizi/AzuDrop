@@ -9,6 +9,11 @@
 </p>
 
 <p align="center">
+  <a href="README.md">English</a> ·
+  <a href="README.fa.md">فارسی</a>
+</p>
+
+<p align="center">
   <a href="#features">Features</a> ·
   <a href="#quick-start">Quick start</a> ·
   <a href="#security-notes">Security</a> ·
@@ -243,6 +248,7 @@ azudrop/
   package.json
   server.js
   README.md
+  README.fa.md
   Run AzuDrop - Windows.bat
   Run AzuDrop - macOS.command
   run-azudrop-linux.sh
@@ -381,3 +387,11 @@ Made by **Mohammad Mehdi Azizi**.
 - Telegram: <https://t.me/luluch_code>
 - Website: <https://theazizi.ir/>
 - Financial support: <https://theazizi.ir/#support>
+
+---
+
+## License
+
+No license has been added yet.
+
+Before publishing the repository publicly, consider adding a license file such as MIT, Apache-2.0, or GPL-3.0 depending on how you want others to use the project.
