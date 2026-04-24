@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#111827" />
+  <title>AzuDrop</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div id="toast" class="toast" aria-live="polite"></div>
+  <main class="appShell">
+    <header class="appHeader card">
+      <div class="brandRow">
+        <img src="/favicon.svg" class="logo" alt="AzuDrop" />
+        <div>
+          <h1>AzuDrop</h1>
+          <p>Fast local text and file transfer for your devices.</p>
+        </div>
+      </div>
+      <div class="headerActions">
+        <button id="themeToggle" class="btn ghost" type="button">Dark mode</button>
+        <button id="notifyToggle" class="btn ghost" type="button">Alerts off</button>
+        <button id="testSound" class="btn ghost" type="button">Test sound</button>
+        <span class="status"><span id="dot"></span><span id="clients">Connecting...</span></span>
+      </div>
+    </header>
+
+    <nav class="quickTabs" aria-label="AzuDrop sections">
+      <button class="tabBtn active" type="button" data-panel-target="home">Home</button>
+      <button class="tabBtn" type="button" data-panel-target="texts">Texts</button>
+      <button class="tabBtn" type="button" data-panel-target="files">Files</button>
+      <button class="tabBtn" type="button" data-panel-target="devices">Devices</button>
+      <button class="tabBtn" type="button" data-panel-target="activity">Activity</button>
+    </nav>
+
+    <section class="grid two tabPanel" data-panel="home">
+      <div class="card heroCard">
+        <div class="sectionHead">
+          <div>
+            <h2>Connect devices</h2>
+            <p>Scan the QR code or open one of the network links from any device on the same network.</p>
+          </div>
+          <button id="copyMainLink" class="btn small ghost" type="button">Copy link</button>
+        </div>
+        <a id="phoneUrl" class="mainLink" href="#" target="_blank" rel="noreferrer">Creating link...</a>
+        <details class="detailsBox">
+          <summary>Show all network links</summary>
+          <div id="allUrls" class="urlList"></div>
+        </details>
+      </div>
+      <div class="card qrCard">
+        <img id="qr" class="qr" alt="QR code" />
+      </div>
+    </section>
+
+    <section class="grid three statsGrid tabPanel" data-panel="home">
+      <div class="stat card"><b id="statTexts">0</b><span>Texts</span></div>
+      <div class="stat card"><b id="statFiles">0</b><span>Files</span></div>
+      <div class="stat card"><b id="statSize">0 B</b><span>Total size</span></div>
+    </section>
+
+    <section class="grid two tabPanel" data-panel="devices">
+      <div class="card">
+        <div class="sectionHead compactHead">
+          <h2>My device</h2>
+          <button id="saveDeviceName" class="btn small ghost" type="button">Save</button>
+        </div>
+        <div class="inputRow">
+          <input id="deviceName" type="text" placeholder="Device name, e.g. Mohammad Laptop" maxlength="60" />
+        </div>
+        <p class="hint">This name appears in the online device list.</p>
+      </div>
+
+      <div class="card">
+        <div class="sectionHead compactHead">
+          <h2>Online devices</h2>
+          <button id="buzzBtn" class="btn small ghost" type="button">Ping</button>
+        </div>
+        <div id="devices" class="list compactList empty">No devices yet.</div>
+      </div>
+    </section>
+
+    <section class="card tabPanel" data-panel="devices">
+      <div class="sectionHead compactHead">
+        <div>
+          <h2>Device trust</h2>
+          <p>Trust known devices, block unwanted devices, or forget old devices.</p>
+        </div>
+        <button id="refreshTrust" class="btn small ghost" type="button">Refresh</button>
+      </div>
+      <div class="trustHint">Trusted devices are marked in the online list. Blocked devices can connect, but cannot send text, ping, or upload files.</div>
+      <div id="trustDevices" class="list compactList empty">No known devices yet.</div>
+    </section>
+
+    <section class="card tabPanel" data-panel="texts">
+      <div class="sectionHead">
+        <div>
+          <h2>Send text</h2>
+          <p>Send to all devices or target one selected device.</p>
+        </div>
+        <select id="targetDevice" class="select"><option value="all">All devices</option></select>
+      </div>
+      <textarea id="textInput" rows="5" placeholder="Type or paste text here..."></textarea>
+      <div class="bar">
+        <span id="charCount" class="hint">0 characters</span>
+        <div class="actions">
+          <button id="pasteText" class="btn ghost" type="button">Paste</button>
+          <button id="copyInput" class="btn ghost" type="button">Copy</button>
+          <button id="shareInput" class="btn ghost" type="button">Share</button>
+          <button id="clearInput" class="btn ghost" type="button">Clear</button>
+          <button id="sendText" class="btn primary" type="button">Send text</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card tabPanel" data-panel="texts">
+      <div class="sectionHead">
+        <div>
+          <h2>Received texts</h2>
+          <p>Copy, pin, reuse, share, save or delete each text item.</p>
+        </div>
+        <div class="actions">
+          <button id="copyAllTexts" class="btn small ghost" type="button">Copy all</button>
+          <a href="/api/texts/export" class="btn small ghost">Export TXT</a>
+          <button id="clearTexts" class="btn small danger" type="button">Clear</button>
+        </div>
+      </div>
+      <div class="toolbar">
+        <input id="textSearch" type="search" placeholder="Search texts..." />
+        <select id="textSort" class="select">
+          <option value="new">Newest first</option>
+          <option value="old">Oldest first</option>
+        </select>
+        <label class="checkLabel"><input id="showPinnedOnly" type="checkbox" /> Pinned only</label>
+      </div>
+      <div id="texts" class="list empty">No text yet.</div>
+    </section>
+
+    <section class="card tabPanel" data-panel="files">
+      <div class="sectionHead">
+        <div>
+          <h2>Files</h2>
+          <p>Upload, preview, rename, copy links, share and delete files.</p>
+        </div>
+        <div class="actions">
+          <button id="refreshFiles" class="btn small ghost" type="button">Refresh</button>
+          <button id="deleteSelectedFiles" class="btn small danger" type="button">Delete selected</button>
+          <button id="clearFiles" class="btn small danger" type="button">Delete all</button>
+        </div>
+      </div>
+
+      <form id="uploadForm" class="uploadBox">
+        <label id="dropZone" class="dropZone">
+          <input id="fileInput" type="file" name="files" multiple />
+          <span class="dropIcon" aria-hidden="true">+</span>
+          <span class="dropText"><b>Choose files</b><small>Tap here on mobile, or drag and drop on desktop.</small></span>
+        </label>
+        <div id="selectedFilesPreview" class="selectedFilesPreview emptyMini">No files selected.</div>
+        <div class="bar uploadBar">
+          <progress id="progress" value="0" max="100"></progress>
+          <div class="actions">
+            <button class="btn primary" type="submit">Upload</button>
+            <button id="clearFilesInput" class="btn ghost" type="button">Clear selection</button>
+          </div>
+        </div>
+        <div id="uploadStatus" class="hint"></div>
+      </form>
+
+      <div class="toolbar">
+        <input id="fileSearch" type="search" placeholder="Search files..." />
+        <select id="fileSort" class="select">
+          <option value="new">Newest first</option>
+          <option value="old">Oldest first</option>
+          <option value="name">Name</option>
+          <option value="size">Size</option>
+          <option value="type">Type</option>
+        </select>
+      </div>
+      <div id="files" class="list empty">No files yet.</div>
+    </section>
+
+    <section class="card tabPanel" data-panel="activity">
+      <div class="sectionHead compactHead">
+        <h2>Activity</h2>
+        <button id="clearLocalEvents" class="btn small ghost" type="button">Clear locally</button>
+      </div>
+      <div id="events" class="list compactList empty">No activity yet.</div>
+    </section>
+
+    <footer class="siteFooter card">
+      <div class="footerBrand">
+        <img src="/favicon.svg" class="footerLogo" alt="AzuDrop" />
+        <div>
+          <strong>AzuDrop</strong>
+          <span>Made by Mohammad Mehdi Azizi</span>
+        </div>
+      </div>
+      <nav class="footerLinks" aria-label="Creator links">
+        <a href="https://x.com/the_azzi" target="_blank" rel="noreferrer">X</a>
+        <a href="https://github.com/TheGreatAzizi" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://t.me/luluch_code" target="_blank" rel="noreferrer">Telegram</a>
+        <a href="https://theazizi.ir/" target="_blank" rel="noreferrer">Website</a>
+        <a class="supportLink" href="https://theazizi.ir/#support" target="_blank" rel="noreferrer">Financial support</a>
+      </nav>
+    </footer>
+  </main>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
