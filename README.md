@@ -1,4 +1,5 @@
 # AzuDrop
+[![DevSponsors](https://devsponsors.github.io/assets/badges/sponsor.svg)](https://devsponsors.github.io)
 
 <p align="center">
   <img src="public/favicon.svg" width="88" height="88" alt="AzuDrop logo" />
